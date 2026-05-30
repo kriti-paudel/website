@@ -3,329 +3,1218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engineering Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Kriti Paudel - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e4e4e4;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c94b8b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e4e4e4;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b9d;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c94b8b 100%);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: transform 0.3s;
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: rgba(35, 39, 65, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
+        }
+
+        .card-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c94b8b 100%);
+        }
+
+        .card-content {
+            margin-top: 2rem;
+            line-height: 1.8;
+            color: #b8b8b8;
+        }
+
+        .info-item {
+            margin-bottom: 1rem;
+        }
+
+        .info-label {
+            color: #ff6b9d;
+            font-weight: 600;
+        }
+
+        /* Skills Tags */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c94b8b 100%);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+        }
+
+        /* Expertise Items */
+        .expertise-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            align-items: start;
+        }
+
+        .expertise-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c94b8b 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .expertise-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .expertise-content p {
+            color: #b8b8b8;
+            line-height: 1.6;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c94b8b 100%);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #2d1b69 0%, #1a1a2e 50%, #4a1942 100%);
+            position: relative;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-icon:hover {
+            background: rgba(255, 107, 157, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.3);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-greeting {
+            font-size: 1.2rem;
+            color: #b8b8b8;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero-name {
+            font-size: 5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffa3c1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+            color: #e4e4e4;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #b8b8b8;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c94b8b 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.6);
+        }
+
+        /* Resume Section */
+        .resume-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+
+        .section-title .highlight {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c94b8b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            align-items: start;
+        }
+
+        .resume-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .resume-icon {
+            font-size: 2rem;
+        }
+
+        .resume-header h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-line {
+            width: 4px;
+            min-height: 100%;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .red-line {
+            background: linear-gradient(180deg, #ff6b9d 0%, #ff4d7d 100%);
+        }
+
+        .purple-line {
+            background: linear-gradient(180deg, #a855f7 0%, #7c3aed 100%);
+        }
+
+        .green-line {
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-bottom: 1rem;
+        }
+
+        .timeline-date {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .red-text {
+            color: #ff6b9d;
+        }
+
+        .purple-text {
+            color: #a855f7;
+        }
+
+        .green-text {
+            color: #10b981;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .timeline-description {
+            color: #b8b8b8;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .volunteering-card {
+            grid-column: 1 / -1;
+        }
+
+        .volunteering-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 4rem 0;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #b8b8b8;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contact-form-card {
+            background: rgba(35, 39, 65, 0.6);
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            background: rgba(45, 55, 85, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            color: #e4e4e4;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #ff6b9d;
+            background: rgba(45, 55, 85, 1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c94b8b 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.6);
+        }
+
+        .contact-info-card {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c94b8b 50%, #a855f7 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            color: white;
+        }
+
+        .contact-info-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: start;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        .contact-item h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-item p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        .follow-section {
+            margin-bottom: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .follow-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            padding: 4rem 0;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(35, 39, 65, 0.6);
+            color: #e4e4e4;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 107, 157, 0.2);
+            border-color: #ff6b9d;
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c94b8b 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(35, 39, 65, 0.6);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
+        }
+
+        .project-image {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 46, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-link {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c94b8b 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.5);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: #b8b8b8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            background: rgba(255, 107, 157, 0.15);
+            color: #ff6b9d;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 107, 157, 0.3);
+        }
+
+        .project-card[data-category].hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resume-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .volunteering-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .hero-name {
+                font-size: 3rem;
+            }
+
+            .hero-title {
+                font-size: 1.3rem;
+            }
+
+            .social-links {
+                gap: 0.7rem;
+            }
+
+            .social-icon {
+                width: 45px;
+                height: 45px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <div class="logo">
-                <span class="logo-text">Portfolio</span>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
-                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Kriti Paudel</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="nav-icons">
+                <button class="icon-btn">💬</button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <p class="hero-subtitle">Hello, I'm </p>
-                <h1 class="hero-title">Kriti Paudel</h1>
-                <p class="hero-description">Engineering Student | Developer | Rocotics | Problem Solver</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
-                </div>
-            </div>
+    <section class="hero">
+        <div class="social-links">
+            <a href="#" class="social-icon">📘</a>
+            <a href="#" class="social-icon">🐦</a>
+            <a href="#" class="social-icon">📷</a>
+            <a href="#" class="social-icon">💼</a>
+            <a href="#" class="social-icon">🐙</a>
         </div>
-        <div class="scroll-indicator">
-            <span class="scroll-text">Scroll Down</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">About Me</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="about-content">
-                <div class="about-image">
-                    <div class="image-placeholder">
-                        <span class="placeholder-icon">👤</span>
-                    </div>
-                </div>
-                <div class="about-text">
-                    <h3 class="about-subtitle">Engineering Student & Passionate Developer</h3>
-                    <p class="about-description">
-                        I am a dedicated engineering student with a passion for technology and innovation. 
-                        My journey in engineering has equipped me with strong problem-solving skills and 
-                        a deep understanding of various technical domains.
-                    </p>
-                    <p class="about-description">
-                        I specialize in ROS, robotics, and embedded systems. I love taking 
-                        on challenging projects that push the boundaries of what's possible and constantly 
-                        seek opportunities to learn and grow.
-                    </p>
-                    <div class="about-info">
-                        <div class="info-item">
-                            <span class="info-label">Name:</span>
-                            <span class="info-value">Kriti Paudel</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Email:</span>
-                            <span class="info-value">kriti13p@gmail.com</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Location:</span>
-                            <span class="info-value">Syangja, Nepal</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Study:</span>
-                            <span class="info-value">Electronics Communication and Information Technology</span>
-                        </div>
-                    </div>
-                    <a href="#contact" class="btn btn-primary">Download CV</a>
-                </div>
-            </div>
+        <div class="hero-content">
+            <p class="hero-greeting">Hello, I am</p>
+            <h1 class="hero-name">Kriti Paudel</h1>
+            <h2 class="hero-title">Electronics Engineer | Robotics | Problem Solver</h2>
+            <p class="hero-description">Building intelligent systems and innovative solutions for real-world problems</p>
+            <button class="cta-button">View My Work</button>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">My Skills</h2>
-                <div class="section-line"></div>
+    <!-- Main Content -->
+    <div class="container">
+        <!-- First Row -->
+        <div class="grid">
+            <div class="card">
+                <h2 class="card-title">Who am I?</h2>
+                <div class="card-content">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #fff;">Electronics, Communication and Information Engineering Student & Tech Enthusiast</h3>
+                    <p>I am a dedicated engineering student with a passion for technology and innovation. My journey in engineering has equipped me with strong problem-solving skills and a deep understanding of various technical domains. Beyond the tech, my appreciation for literature illustrates to me new ways of looking at creativity and humanity. I am excited to discover, learn and add in technology world as well art. </p>
+                </div>
             </div>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">💻</div>
-                    <h3 class="skill-title">Programming</h3>
-                    <ul class="skill-list">
-                        <li>Python</li>
-                        <li>C/C++</li>
-                       
-                    </ul>
-                </div>
-               
-                <div class="skill-card">
-                    <div class="skill-icon">🤖</div>
-                    <h3 class="skill-title">Engineering Tools</h3>
-                    <ul class="skill-list">
-                        <li>Kicad</li>
-                        <li>Arduino</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">📊</div>
-                    <h3 class="skill-title">Data & Analysis</h3>
-                    <ul class="skill-list">
-                        <li>Data Structures</li>
-                        <li>Algorithms</li>
-                        
-                        <li>Problem Solving</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🔧</div>
-                    <h3 class="skill-title">Software & Tools</h3>
-                    <ul class="skill-list">
-                        <li>Git & GitHub</li>
-                        <li>VS Code</li>
-                        <li>Linux</li>
-                        <li>Terminal</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">💡</div>
-                    <h3 class="skill-title">Soft Skills</h3>
-                    <ul class="skill-list">
-                        <li>Team Collaboration</li>
-                        <li>Communication</li>
-                        <li>Critical Thinking</li>
-                        <li>Time Management</li>
-                    </ul>
+
+            <div class="card">
+                <h2 class="card-title">Personal Info</h2>
+                <div class="card-content">
+                    <div class="info-item">
+                        <span class="info-label">Email:</span> Kriti Paudel
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Address:</span> Aadhikhola 5, Syangja, Nepal
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Phone:</span> 9846992773
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">My Projects</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-               <div class="project-card">
-                 <div class="project-image">
-                    <div class="project-placeholder">🤖</div>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Micromouse Maze Solving Bot</h3>
-                    <p class="project-description">
-                        Designed and built an autonomous Micromouse robot capable of solving complex mazes efficiently.
-                        Implemented maze mapping, pathfinding algorithms, and optimal navigation strategies.
-                        Utilized sensors and microcontroller programming for precise movement and decision-making.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Arduino</span>
-                        <span class="tag">C/C++</span>
-                        <span class="tag">Robotics</span>
-                        <span class="tag">Maze Solving</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">View Demo</a>
-                        <a href="#" class="project-link">GitHub</a>
-                    </div>
-                </div>
-            </div>
-                <!-- Project 2 -->
-              <div class="project-card">
-                <div class="project-image">
-                    <div class="project-placeholder">🏎️</div>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Line Following Bot</h3>
-                    <p class="project-description">
-                        Developed a robot that follows a predetermined path from start to finish autonomously.
-                        Implemented sensor-based feedback for accurate line detection and obstacle avoidance.
-                        Perfected speed and stability for consistent performance in competitions.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Arduino</span>
-                        <span class="tag">Sensors</span>
-                        <span class="tag">PID Control</span>
-                        <span class="tag">Robotics</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">View Demo</a>
-                        <a href="#" class="project-link">GitHub</a>
-                    </div>
-                </div>
-            </div>
-                 <!-- Project 3: Smart Sharpa Hackathon Project -->
-            <div class="project-card">
-                <div class="project-image">
-                    <div class="project-placeholder">📱</div>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Digital Sharpa</h3>
-                    <p class="project-description">
-                        Created a health-monitoring system for a hackathon, integrating an oximeter with a GSM module.
-                        The system measures vital signs and sends real-time alerts via SMS, improving remote health monitoring.
-                        Gained practical experience in IoT, embedded programming, and rapid prototyping.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">GSM</span>
-                        <span class="tag">Arduino</span>
-                        <span class="tag">Oximeter</span>
-                        <span class="tag">IoT</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">View Demo</a>
-                        <a href="#" class="project-link">GitHub</a>
-                    </div>
+        <!-- Second Row -->
+        <div class="grid">
+            <div class="card">
+                <h2 class="card-title">Technical Skills</h2>
+                <div class="skills-container">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">ROS</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">IoT Development</span>
+                    <span class="skill-tag">Arduino</span>
+                    <span class="skill-tag">C/C++</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Embedded Systems</span>
+                    <span class="skill-tag">Terminal</span>
                 </div>
             </div>
 
+            <div class="card">
+                <h2 class="card-title">My Expertise</h2>
+                <div class="card-content">
+                    <div class="expertise-item">
+                        <div class="expertise-icon">💻</div>
+                        <div class="expertise-content">
+                            <h3>Robotics</h3>
+                            <p>I love to build new electronics projects</p>
+                        </div>
+                    </div>
+
+                    <div class="expertise-item">
+                        <div class="expertise-icon">🤖</div>
+                        <div class="expertise-content">
+                            <h3>IoT Solutions</h3>
+                            <p>Creating smart solutions with microcontrollers and sensors</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Resume Section -->
+    <section class="resume-section" id="resume">
+        <div class="container">
+            <h2 class="section-title">My <span class="highlight">Resume</span></h2>
+
+            <!-- Experience & Education Grid -->
+            <div class="resume-grid">
+                <div class="card">
+                    <div class="resume-header">
+                        <span class="resume-icon">💼</span>
+                        <h3>Experience</h3>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-line red-line"></div>
+                            <div class="timeline-content">
+                                <h4 class="timeline-date red-text">Mar 2026 - Present</h4>
+                                <h5 class="timeline-title">Vice-Executive Head | Robotics Club, IOE WRC</h5>
+                                <p class="timeline-description">Handling the club operations and leading the team.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-line red-line"></div>
+                            <div class="timeline-content">
+                                <h4 class="timeline-date red-text">Mar 2025 - 2026</h4>
+                                <h5 class="timeline-title">Logistic Shaft Member | Robotics Club, IOE WRC</h5>
+                                <p class="timeline-description">Manage the coordination and works for official letters.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-line red-line"></div>
+                            <div class="timeline-content">
+                                <h4 class="timeline-date red-text">Mar 2024 - Mar 2025</h4>
+                                <h5 class="timeline-title">General Member | Robotics Club, IOE WRC</h5>
+                                <p class="timeline-description">Developed award-winning Micromouse robot using maze-solving algorithms. Coordinated a 15-day "Rainy Session" workshop, training 100+ students in robotics.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="resume-header">
+                        <span class="resume-icon">🎓</span>
+                        <h3>Education</h3>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-line purple-line"></div>
+                            <div class="timeline-content">
+                                <h4 class="timeline-date purple-text">2023 - Present</h4>
+                                <h5 class="timeline-title">B.E Electronics Engineering (Third Year)</h5>
+                                <p class="timeline-description">Currently studying Bachelor in Electronics Engineering at WRC, Pokhara under IOE, TU.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-line purple-line"></div>
+                            <div class="timeline-content">
+                                <h4 class="timeline-date purple-text">2020 - 2022</h4>
+                                <h5 class="timeline-title">High School</h5>
+                                <p class="timeline-description">Completed high school from Chhorepatan Secondary School, Pokhara</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Volunteering Section -->
+            <div class="card volunteering-card">
+                <div class="resume-header">
+                    <span class="resume-icon">🤝</span>
+                    <h3>Volunteering</h3>
+                </div>
+                <div class="volunteering-grid">
+                    <div class="timeline-item">
+                        <div class="timeline-line green-line"></div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-date green-text">2024 - 2025</h4>
+                            <h5 class="timeline-title">Rainy Session & Robo Rookies Instructor | Robotics Club</h5>
+                            <p class="timeline-description">Worked as an instructor for Rainy Session and Robo Rookies programs, training students in robotics fundamentals and hands-on projects.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-line green-line"></div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-date green-text">2025</h4>
+                            <h5 class="timeline-title">Robotics Mentor | Syangja</h5>
+                            <p class="timeline-description">Taught students Robotics and Home Automation during the robotics program in Syangja.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">My <span class="highlight">Portfolio</span></h2>
+            <p class="section-subtitle">Explore my recent work in robotics and IoT</p>
+
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="robotics">Robotics</button>
+                <button class="filter-btn" data-filter="iot">IoT</button>
+                <button class="filter-btn" data-filter="volunteering">Volunteering</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid">
+                <div class="project-card" data-category="robotics">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/2d3748/ff6b9d?text=Micromouse+Robot" alt="Micromouse Robot">
+                        <div class="project-overlay">
+                            <button class="project-link">View Project</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Micromouse Robot</h3>
+                        <p class="project-description">Award-winning autonomous maze-solving robot using PID control, QTR-8A sensors, and path optimization algorithms.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Arduino</span>
+                            <span class="project-tag">PID Control</span>
+                            <span class="project-tag">Pathfinding</span>
+                            <span class="project-tag">C++</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="robotics">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/2d3748/10b981?text=Line+Follower" alt="Line Follower Robot">
+                        <div class="project-overlay">
+                            <button class="project-link">View Project</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Line Follower Robot</h3>
+                        <p class="project-description">High-speed line following robot with advanced PID tuning and sensor calibration for optimal track performance.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Arduino</span>
+                            <span class="project-tag">QTR Sensors</span>
+                            <span class="project-tag">Motor Control</span>
+                            <span class="project-tag">Embedded Systems</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="iot">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/2d3748/ff6b9d?text=IoT+Home+Automation" alt="IoT Project">
+                        <div class="project-overlay">
+                            <button class="project-link">View Project</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">IoT Home Automation</h3>
+                        <p class="project-description">Smart home system with mobile app control for lights, temperature, and security monitoring.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">IoT</span>
+                            <span class="project-tag">ESP32</span>
+                            <span class="project-tag">Mobile App</span>
+                            <span class="project-tag">Sensors</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="volunteering">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/2d3748/10b981?text=Robotics+Workshop" alt="Robotics Workshop">
+                        <div class="project-overlay">
+                            <button class="project-link">View Project</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Robotics Workshop - Syangja</h3>
+                        <p class="project-description">Conducted robotics and home automation training sessions for students in Syangja, teaching fundamentals and hands-on projects.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Teaching</span>
+                            <span class="project-tag">Robotics</span>
+                            <span class="project-tag">Community</span>
+                            <span class="project-tag">Workshop</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="volunteering">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/2d3748/a855f7?text=Rainy+Session" alt="Rainy Session">
+                        <div class="project-overlay">
+                            <button class="project-link">View Project</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Rainy Session Training</h3>
+                        <p class="project-description">15-day intensive robotics workshop training 100+ students in fundamentals and practical applications.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Instructor</span>
+                            <span class="project-tag">Training</span>
+                            <span class="project-tag">Arduino</span>
+                            <span class="project-tag">Mentorship</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section class="contact-section" id="contact">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Get In Touch</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3 class="contact-subtitle">Let's Connect</h3>
-                    <p class="contact-description">
-                        I'm always open to discussing new projects, creative ideas, or 
-                        opportunities to be part of your vision. Feel free to reach out!
-                    </p>
+            <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
+            <p class="section-subtitle">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out!</p>
+
+            <div class="contact-grid">
+                <div class="card contact-form-card">
+                    <h3 class="form-title">Send a Message</h3>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Your Name *" class="form-input" required>
+                        <input type="email" placeholder="Your Email *" class="form-input" required>
+                        <textarea placeholder="Your Message *" class="form-textarea" rows="6" required></textarea>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-info-card">
+                    <h3 class="contact-info-title">Contact Info</h3>
                     <div class="contact-details">
                         <div class="contact-item">
-                            <div class="contact-icon">📧</div>
+                            <div class="contact-icon">✉️</div>
                             <div>
                                 <h4>Email</h4>
                                 <p>kriti13p@gmail.com</p>
                             </div>
                         </div>
                         <div class="contact-item">
-                            <div class="contact-icon">📱</div>
-                            <div>
-                                <h4>Phone</h4>
-                                <p>9846992773</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
                             <div class="contact-icon">📍</div>
                             <div>
-                                <h4>Location</h4>
-                                <p>Syangja, Nepal</p>
+                                <h4>Address</h4>
+                                <p>Aandhikhola 5, Syangja, Nepal</p>
                             </div>
                         </div>
                     </div>
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="GitHub">
-                            <span class="social-icon">🐙</span>
-                        </a>
-                        <a href="#" class="social-link" aria-label="LinkedIn">
-                            <span class="social-icon">💼</span>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Twitter">
-                            <span class="social-icon">🐦</span>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Instagram">
-                            <span class="social-icon">📷</span>
-                        </a>
+
+                    <div class="follow-section">
+                        <h4 class="follow-title">Follow Me</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-link">📘</a>
+                            <a href="#" class="social-link">🐦</a>
+                            <a href="#" class="social-link">📷</a>
+                            <a href="#" class="social-link">💼</a>
+                            <a href="#" class="social-link">🐙</a>
+                        </div>
                     </div>
-                </div>
-                <div class="contact-form-container">
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p class="footer-text">© 2024 Kriti Paudel. All Rights Reserved.</p>
-                <p class="footer-text">Built with passion and code ❤️</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
-    <!-- Link JavaScript File -->
-    <script src="script.js"></script>
+    <script>
+        // Form submission handler
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Message sent! (This is a demo - connect to your backend to actually send messages)');
+            this.reset();
+        });
+
+        // Portfolio filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filterValue === 'all') {
+                        card.classList.remove('hidden');
+                        setTimeout(() => {
+                            card.style.display = 'block';
+                        }, 10);
+                    } else {
+                        const cardCategory = card.getAttribute('data-category');
+                        if (cardCategory === filterValue) {
+                            card.classList.remove('hidden');
+                            setTimeout(() => {
+                                card.style.display = 'block';
+                            }, 10);
+                        } else {
+                            card.classList.add('hidden');
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
